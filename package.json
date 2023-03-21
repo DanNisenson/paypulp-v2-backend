@@ -6,8 +6,8 @@
     "start": "nodemon ./bin/www"
   },
   "dependencies": {
+    "@aws-sdk/client-secrets-manager": "^3.296.0",
     "camelize": "^1.0.1",
-    "aws-sdk": "^2.1335.0",
     "cors": "~2.8.5",
     "crypto-js": "^4.1.1",
     "debug": "~2.6.9",
