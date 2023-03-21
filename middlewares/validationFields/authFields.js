@@ -35,7 +35,7 @@ const accountType = () => {
     .notEmpty()
     .withMessage('Account type param is empty!')
     .isAlpha()
-    .withMessage('Account type only admits alphabetic characters')
+    .withMessage('Account type only admits letters')
 }
 
 const firstName = () => {
@@ -45,7 +45,7 @@ const firstName = () => {
     .notEmpty()
     .withMessage('First name param is empty!')
     .isAlpha(locale, { ignore: ' ' })
-    .withMessage('First name only admits alphabetic characters')
+    .withMessage('First name only admits letters')
     .trim()
 }
 
@@ -56,7 +56,7 @@ const lastName = () => {
     .notEmpty()
     .withMessage('Last name param is empty!')
     .isAlpha(locale, { ignore: ' ' })
-    .withMessage('Last name only admits alphabetic characters')
+    .withMessage('Last name only admits letters')
     .trim()
 }
 
@@ -87,6 +87,8 @@ const address = () => {
     .withMessage("Address param doesn't exist!")
     .notEmpty()
     .withMessage('Address param is empty!')
+    .isAlphanumeric(locale, { ignore: ' ' })
+    .withMessage('Address only admits letters and numbers')
     .trim()
 }
 
@@ -96,8 +98,19 @@ const city = () => {
     .withMessage("City param doesn't exist!")
     .notEmpty()
     .withMessage('City param is empty!')
-    .isAlphanumeric(locale, { ignore: ' ' })
-    .withMessage('Address only accept alphabetic characters and numbers')
+    .isAlpha(locale, { ignore: ' ' })
+    .withMessage('City only accept letters')
+    .trim()
+}
+
+const country = () => {
+  return body('country')
+    .exists()
+    .withMessage("Country param doesn't exist!")
+    .notEmpty()
+    .withMessage('Country param is empty!')
+    .isAlpha(locale, { ignore: ' ' })
+    .withMessage('Country only accept letters')
     .trim()
 }
 
@@ -111,27 +124,6 @@ const timeZone = () => {
     .withMessage('Time zone must be a number')
 }
 
-const securityQuestion = () => {
-  return body('securityQuestion')
-    .exists()
-    .withMessage("Security question param doesn't exist!")
-    .notEmpty()
-    .withMessage('Security question param is empty!')
-    .isAlpha(locale, { ignore: '? ' })
-    .withMessage('Security question only admits alphabetic characters')
-    .trim()
-}
-
-const securityQuestionAnswer = () => {
-  return body('securityQuestionAnswer')
-    .exists()
-    .withMessage("Security question answer param doesn't exist!")
-    .notEmpty()
-    .withMessage('Security question answer param is empty!')
-    .isAlpha(locale, { ignore: '? ' })
-    .withMessage('Security question answer only admits alphabetic characters')
-}
-
 module.exports = {
   email,
   password,
@@ -142,7 +134,6 @@ module.exports = {
   birthDate,
   address,
   city,
+  country,
   timeZone,
-  securityQuestion,
-  securityQuestionAnswer,
 }

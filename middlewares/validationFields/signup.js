@@ -1,31 +1,27 @@
 const {
   email,
   password,
-  accountType,
   firstName,
   lastName,
   phone,
   birthDate,
   timeZone,
-  securityQuestion,
-  securityQuestionAnswer,
   address,
   city,
+  country,
 } = require('./authFields')
 
 const signupValidFields = [
   email(),
   password(),
-  accountType(),
   firstName(),
   lastName(),
   phone(),
   birthDate(),
   address(),
   city(),
+  country(),
   timeZone(),
-  securityQuestion(),
-  securityQuestionAnswer(),
 ]
 
 module.exports = { signupValidFields }
