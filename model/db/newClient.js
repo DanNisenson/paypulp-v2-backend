@@ -16,20 +16,20 @@ const dbConnect = async (table) => {
 const chooseDb = (table) => {
   if (table === 'paymentMethods') {
     return {
-      host: PG_HOST_2,
-      port: PG_PORT_2,
-      user: PG_USER_2,
-      password: PG_PASSWORD_2,
-      database: PG_DATABASE_2,
+      host: process.env.PG_HOST_2,
+      port: process.env.PG_PORT_2,
+      user: process.env.PG_USER_2,
+      password: process.env.PG_PASSWORD_2,
+      database: process.env.PG_DATABASE_2,
       // ssl: { require: true, rejectUnauthorized: false },
     }
   }
   return {
-    host: PG_HOST,
-    port: PG_PORT,
-    user: PG_USER,
-    password: PG_PASSWORD,
-    database: PG_DATABASE,
+    host: process.env.PG_HOST,
+    port: process.env.PG_PORT,
+    user: process.env.PG_USER,
+    password: process.env.PG_PASSWORD,
+    database: process.env.PG_DATABASE,
     // ssl: { require: true, rejectUnauthorized: false },
   }
 }
