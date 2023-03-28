@@ -80,7 +80,7 @@ CREATE TABLE transactions (
 	user_completed BOOLEAN NOT NULL,
 	went_through BOOLEAN NOT NULL,
 	transaction_time timestamp NOT NULL DEFAULT current_timestamp,
-	geolocation POINT,
+	geolocation varchar(100),
 	CONSTRAINT transactions_pk PRIMARY KEY (transaction_id)
 );
 
