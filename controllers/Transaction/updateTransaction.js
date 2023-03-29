@@ -9,6 +9,7 @@ const updateTransaction = async (req, res) => {
 
   try {
     const transaction = await Transaction.updateData('transactions', updateCols, condition)
+    console.log('first', transaction)
     exchangeFunds(transaction[0])
 
     return res.status(200).json(transaction)
@@ -34,6 +35,7 @@ const exchangeFunds = async ({ paymentMethodUuid, buyerUuid, sellerUuid, totalAm
     await UserManager.updateData('users', newData2, condition2)
     return
   }
+  
   if (paymentMethodUuid) {
     const seller = await UserManager.selectBy('users', 'userUuid', sellerUuid)
     const newData = { funds: parseInt(seller[0].funds) + parseInt(totalAmount) }
