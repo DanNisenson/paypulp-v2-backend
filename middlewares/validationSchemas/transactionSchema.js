@@ -26,6 +26,16 @@ const postTransactionSchema = checkSchema({
 })
 
 const updateTransactionSchema = checkSchema({
+  totalAmount: {
+    in: ['body'],
+    optional: true,
+    notEmpty: { errorMessage: 'Total amount uuid must not be empty' },
+    isString: { errorMessage: 'Total amount uuid must be a string' },
+    isInt: {
+      errorMessage: 'Total amount uuid uuid must be a number',
+    },
+    trim: true,
+  },
   paymentMethodUuid: {
     in: ['body'],
     optional: true,
