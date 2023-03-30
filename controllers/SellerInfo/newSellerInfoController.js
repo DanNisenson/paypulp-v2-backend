@@ -16,7 +16,7 @@ const newSellerInfo = async (req, res) => {
     storeAddressAddInfo: req.body.storeAddressAddInfo,
   }
 
-  const accTypeChange = { accountType: 'business' }
+  const accTypeChange = { accountType: 'seller' }
   const condition = { userUuid: req.userUuid }
 
   try {

@@ -1,6 +1,6 @@
-const dbConnect = require('./db/newClient')
-const dbPmConnect = require('./db/newPMClient')
+// const dbPmConnect = require('./db/newPMClient')
 const minify = require('pg-minify')
+const dbConnect = require('./db/newClient')
 const camelize = require('camelize')
 const { snakizeString } = require('../helpers/casing')
 const snakeize = require('snakeize')
@@ -14,7 +14,7 @@ class QueryModel {
    * @returns {undefined | dbData} returns undefined if query returns nothing
    */
   static async selectBy(table, column, value) {
-    const client = await this.getClient(table)
+    const client = await dbConnect(table)
 
     const tbl = snakizeString(table)
     const col = snakizeString(column)
@@ -30,7 +30,7 @@ class QueryModel {
       const dbData = camelize(rows)
       return dbData
     } catch (err) {
-      throw new Error('Error retrieving users from database')
+      throw new Error('Error retrieving data from database')
     } finally {
       client.end()
     }
@@ -43,7 +43,7 @@ class QueryModel {
    * @returns {dbData}
    */
   static async insertData(table, newData) {
-    const client = await this.getClient(table)
+    const client = await dbConnect(table)
 
     const tbl = snakizeString(table)
     const keys = Object.keys(snakeize(newData)).toString()
@@ -75,7 +75,7 @@ class QueryModel {
    * @returns {obj} updated row
    */
   static async updateData(table, newData, condition) {
-    const client = await this.getClient(table)
+    const client = await dbConnect(table)
 
     const tbl = snakizeString(table)
     const keys = Object.keys(snakeize(newData))
@@ -105,8 +105,28 @@ class QueryModel {
     }
   }
 
-  static async getClient(table) {
-    return table === 'paymentMethods' ? await dbPmConnect() : await dbConnect()
+  static async deleteFrom(table, column, value) {
+    const client = await dbConnect(table)
+
+    const tbl = snakizeString(table)
+    const col = snakizeString(column)
+
+    const query = `DELETE FROM ${tbl}
+        WHERE ${col} = ($1) 
+        RETURNING *`
+
+    try {
+      const { rows } = await client.query(minify(query), [value])
+
+      if (rows.length === 0) return
+
+      const dbData = camelize(rows)
+      return dbData
+    } catch (err) {console.log('deleting', err)
+      throw new Error('Error deleting from database')
+    } finally {
+      client.end()
+    }
   }
 
   static parameterPositions(arr) {

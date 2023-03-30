@@ -9,7 +9,7 @@ const postPayMet = async (req, res) => {
     
   try {
     const payMet = await PayMethod.insertData('paymentMethods', newPayMet)
-    return res.status(200).json(payMet)
+    return res.status(201).json(payMet)
   } catch (error) {
     console.log('postPayMet controller', error)
     const message = 'An error occurred while processing your request'

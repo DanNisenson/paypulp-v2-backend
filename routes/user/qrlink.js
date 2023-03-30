@@ -1,5 +1,5 @@
 const express = require('express')
-const { qrLinkSchema } = require('../../middlewares/validationFields/qrLinkSchema')
+const { qrLinkSchema } = require('../../middlewares/validationSchemas/qrLinkSchema')
 const { validateResult } = require('../../middlewares/validators/bodyValid')
 const router = express.Router()
 

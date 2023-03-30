@@ -1,15 +1,23 @@
 var express = require('express')
 var router = express.Router()
-const { transactionSchema } = require('../middlewares/validationFields/transactionSchema.js')
+const {
+  postTransactionSchema,
+  updateTransactionSchema,
+} = require('../middlewares/validationSchemas/transactionSchema.js')
 const { validateResult } = require('../middlewares/validators/bodyValid')
 
 router.post(
   '/',
-  transactionSchema,
+  postTransactionSchema,
   validateResult,
   require('../controllers/Transaction/postTransaction.js'),
 )
 
-router.patch('/complete', require('../controllers/Transaction/updateTransaction.js'))
+router.patch(
+  '/complete',
+  updateTransactionSchema,
+  validateResult,
+  require('../controllers/Transaction/updateTransaction.js'),
+)
 
 module.exports = router

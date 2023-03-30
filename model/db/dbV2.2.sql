@@ -27,7 +27,7 @@ CREATE TABLE personal_info (
 	last_name varchar(50) NOT NULL,
 	phone varchar(20) NOT NULL,
 	birth_date DATE NOT NULL,
-	gender varchar(20) NOT NULL,
+	gender varchar(50) NOT NULL,
 	address varchar(100) NOT NULL,
 	city varchar(50) NOT NULL,
 	state varchar(50) NOT NULL,
@@ -80,7 +80,7 @@ CREATE TABLE transactions (
 	user_completed BOOLEAN NOT NULL,
 	went_through BOOLEAN NOT NULL,
 	transaction_time timestamp NOT NULL DEFAULT current_timestamp,
-	geolocation POINT,
+	geolocation varchar(100),
 	CONSTRAINT transactions_pk PRIMARY KEY (transaction_id)
 );
 

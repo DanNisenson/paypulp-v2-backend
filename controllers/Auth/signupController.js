@@ -1,7 +1,6 @@
 const CryptoJS = require('crypto-js')
 const { v4: uuidv4 } = require('uuid')
 const { UserManager } = require('../../model/userModel')
-const DatesHelp = require('../../helpers/datesHelp')
 const { PersonalInfo } = require('../../model/personalInfoModel')
 
 const signupController = async (req, res) => {
@@ -21,7 +20,6 @@ const signupController = async (req, res) => {
     return res.status(400).json(error.toString())
   }
 
-  
   const newPersonalInfo = {
     userUuid,
     lastName: req.body.lastName,
@@ -34,14 +32,18 @@ const signupController = async (req, res) => {
     birthDate: req.body.birthDate,
     timeZone: req.body.timeZone,
   }
-  
+
   try {
     await PersonalInfo.insertData('personalInfo', newPersonalInfo)
   } catch (error) {
-    
+    try {
+      await UserManager.deleteFrom('users', 'userUuid', userUuid)
+    } catch (error) {
+      return res.status(400).json(error.toString())
+    }
     return res.status(400).json(error.toString())
   }
-  
+
   // const creationTime = DatesHelp.getNow()
 
   // insert into user statistics
