@@ -45,7 +45,7 @@ It's a prototype for a payment gateway based on QR codes. The core concept was t
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the MIT License.
 
 
 
