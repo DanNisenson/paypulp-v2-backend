@@ -1,4 +1,3 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 <a name="readme-top"></a>
 
 
@@ -54,14 +53,16 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Dan Nisenson 
 
-[![linkedin-shield]][linkedin-url] dannisensonc@gmail.com
+dannisensonc@gmail.com
+
+[![linkedin-shield]][linkedin-url] 
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
-* []()
-* []()
+* [Golde Tischler](https://github.com/goldet)
+* [Javier Rico](https://github.com/JavierRico19)
+* [Pilar Peña](https://github.com/MPPS26)
 
 
 
